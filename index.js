@@ -13,6 +13,10 @@ app.get('/', function(request, response) {
   response.render('pages/index');
 });
 
+app.get('/chatroom', function(request, response) {
+  response.render('pages/chatroom');
+});
+
 app.listen(app.get('port'), function() {
   console.log('Server started on port:', app.get('port'));
 });
