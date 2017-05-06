@@ -5,7 +5,7 @@
 
 var app = require('express')();
 var http = require('http').Server(app);
-var io = require('socket.io')(http);
+let io = require('socket.io')(http);
 
 var port = process.env.PORT || 5000;
 
@@ -18,6 +18,7 @@ app.get('/chatroom', function(req, res){
 });
 
 io.on('connection', function(socket){
+  console.log('New connect');
   socket.on('chat message', function(msg){
     io.emit('chat message', msg);
   });
@@ -26,6 +27,7 @@ io.on('connection', function(socket){
 http.listen(port, function(){
   console.log('Server started on port: ' + port);
 });
+
 
 // app.set('port', (process.env.PORT || 5000));
 //
