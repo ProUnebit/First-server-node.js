@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+
+
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+
+  <style>
+    body {
+      margin-top: 100px;
+    }
+
+    input[type=submit] {
+      margin-top: 20px;
+      margin-bottom: 20px;
+    }
+
+    ul {
+      min-height: 100px;
+      border: 1px solid SILVER;
+      border-radius: 5px;
+    }
+    textarea {
+      min-height: 100px;
+    }
+  </style>
+
+</head>
+
+<body>
+
+  <div class="container">
+
+    <div class="alert alert-success" role="alert">Чат (Демо)</div>
+
+    <div class="row">
+
+      <div class="col-md-6">
+        <div class="chat" id="chat"></div>
+        <form action="">
+          <div class="form-group">
+            <h6 class="alert alert-info">Введите сообщение</h6>
+            <textarea class="form-control text-muted" id="m" autocomplete="off"></textarea>
+            <input type="submit" class="btn btn-primary" value="Отправить" />
+        </form>
+        </div>
+        </form>
+      </div>
+
+      <div class="col-md-6">
+        <h6 class="alert alert-info">Сообщения</h6>
+        <ul class="text-muted" id="messages"></ul>
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- <ul id="messages"></ul>
+  <form action="">
+    <input id="m" autocomplete="off" /><button>Send</button>
+  </form> -->
+
+  <script>
+    $(function() {
+      var socket = io();
+      $('form').submit(function() {
+        socket.emit('chat message', $('#m').val());
+        $('#m').val('');
+        return false;
+      });
+      socket.on('chat message', function(msg) {
+        $('#messages').append($('<li>').text(msg));
+        window.scrollTo(0, document.body.scrollHeight);
+      });
+    });
+  </script>
+
+
+</body>
+
+</html>
