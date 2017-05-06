@@ -24,6 +24,15 @@
       border: 1px solid SILVER;
       border-radius: 5px;
     }
+
+    #messages li {
+      padding: 5px 10px;
+      list-style-type: armenian;
+    }
+    #messages li:nth-child(odd) {
+      background: #eee;
+    }
+
     textarea {
       min-height: 100px;
     }
@@ -59,12 +68,6 @@
     </div>
   </div>
 
-
-  <!-- <ul id="messages"></ul>
-  <form action="">
-    <input id="m" autocomplete="off" /><button>Send</button>
-  </form> -->
-
   <script>
     $(function() {
       var socket = io();
@@ -79,7 +82,6 @@
       });
     });
   </script>
-
 
 </body>
 
