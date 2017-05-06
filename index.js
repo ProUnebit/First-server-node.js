@@ -19,8 +19,12 @@ app.get('/chatroom', function(req, res){
 
 io.on('connection', function(socket){
   console.log('New connect');
+  socket.on('disconnect', function(){
+   console.log('Connection is turned off');
+ });
   socket.on('chat message', function(msg){
     io.emit('chat message', msg);
+    console.log('message: ' + msg);
   });
 });
 
