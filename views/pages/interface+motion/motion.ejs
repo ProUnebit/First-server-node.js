@@ -28,7 +28,7 @@
     var motion = document.getElementById("motion");
     motion.width = 800;
     motion.height = 600;
-    var socket = io(location.origin);
+    var socket = io.connect();
     var stage = new createjs.Stage("motion");
     var bmp = new createjs.Bitmap("http://scratch.by/upload/iblock/b63/dog_120.png");
     bmp.x = 350;
