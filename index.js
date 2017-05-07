@@ -14,7 +14,15 @@ app.get('/', function(req, res){
 });
 
 app.get('/chatroom', function(req, res){
-  res.sendFile(__dirname + '/views/pages/chatroom.html');
+  res.render(__dirname + '/views/pages/chatroom.ejs');
+});
+
+app.get('/motion', function(req, res){
+  res.render(__dirname + '/views/pages/interface+motion/motion.ejs');
+});
+
+app.get('/interface', function(req, res){
+  res.render(__dirname + '/views/pages/interface+motion/interface.ejs');
 });
 
 io.on('connection', function(socket){
