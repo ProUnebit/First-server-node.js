@@ -6,14 +6,15 @@
 
   <% include ../../partials/header.ejs %>
 
-  <style>
-    body {
-      margin-top: 200px;
-    }
-    button {
-      margin: 20px;
-    }
-  </style>
+    <style>
+      body {
+        margin-top: 250px;
+      }
+
+      button {
+        margin: 20px;
+      }
+    </style>
 
 </head>
 
@@ -22,11 +23,20 @@
   <div class="container">
     <div class="row">
       <div class="col-md-12 text-center">
-        <button type="button" class="btn btn-secondary"><h2>←</h2></button>
-        <button type="button" class="btn btn-secondary"><h2>→</h2></button>
+        <button type="button" class="btn btn-secondary" onclick="{sendCommand('left')}"><h2>←</h2></button>
+        <button type="button" class="btn btn-secondary" onclick="{sendCommand('right')}"><h2>→</h2></button>
       </div>
     </div>
   </div>
+
+  <script>
+    var socket = io(location.origin);
+    function sendCommand(command) {
+      socket.emit('interface+motion_send', {
+        command: command
+      });
+    }
+  </script>
 </body>
 
 </html>

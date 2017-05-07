@@ -39,10 +39,10 @@
     socket.on('interface+motion_listen', function (data) {
         switch (data.command) {
             case 'right':
-                bitmap.x += 25;
+                bmp.x += 50;
                 break;
             case 'left':
-                bitmap.x -= 25;
+                bmp.x -= 50;
                 break;
         }
         stage.update();
