@@ -30,7 +30,7 @@
   </div>
 
   <script>
-    var socket = io(location.origin);
+    var socket = io();
 
     function sendCommand(command) {
       socket.emit('interface+motion_send', {
