@@ -7,9 +7,13 @@
   <% include ../../partials/header.ejs %>
 
     <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+
       body {
         margin-top: 50px;
-        text-align: center;
       }
 
       #interface-circle {
@@ -21,13 +25,13 @@
 
 <body>
 
-  <div class="container">
-    <canvas id="interface-circle"></canvas>
-  </div>
+
+  <canvas id="interface-circle"></canvas>
+
 
   <script>
     var motion = document.getElementById("interface-circle");
-    motion.width = 800;
+    motion.width = window.innerWidth;
     motion.height = 400;
     // var socket = io();
     var stage = new createjs.Stage("interface-circle");
@@ -36,26 +40,35 @@
 
     stage.addChild(circle);
 
+    addEventListener("mousemove", function(event) {
 
-    createjs.Tween.get(circle, {
-        loop: true
-      })
-      .to({
-        x: 30,
+      createjs.Tween.get(circle, {
+          loop: false
+        })
+        .to({
+          x: event.x - 40,
+          y: event.y - 40
+        }, ((circle.y - event.y) * (circle.x - event.x)) * 0.001, createjs.Ease.Linear)
+      createjs.Tween.get(circle, {
+          loop: true
+        })
+        .to({
+          x: 30,
 
-      }, 2000, createjs.Ease.getPowInOut(1))
-      .to({
-        x: 0,
+        }, 1800, createjs.Ease.getPowInOut(1))
+        .to({
+          x: 0,
 
-      }, 2000, createjs.Ease.getPowInOut(1))
-      .to({
+        }, 1800, createjs.Ease.getPowInOut(1))
+        .to({
 
-        x: -30,
-      }, 2000, createjs.Ease.getPowInOut(1))
-      .to({
-        x: 0,
+          x: -30,
+        }, 1800, createjs.Ease.getPowInOut(1))
+        .to({
+          x: 0,
 
-      }, 2000, createjs.Ease.getPowInOut(1))
+        }, 1800, createjs.Ease.getPowInOut(1))
+    });
 
     createjs.Ticker.setFPS(60);
     createjs.Ticker.addEventListener("tick", stage);

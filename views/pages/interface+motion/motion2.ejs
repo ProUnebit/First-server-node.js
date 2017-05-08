@@ -1,1 +1,79 @@
-...
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+
+  <% include ../../partials/header.ejs %>
+
+    <style>
+      body {
+        margin-top: 50px;
+        text-align: center;
+      }
+
+      #interface-circle {
+        border: 5px solid SILVER;
+        background: linear-gradient(to top, LEMONCHIFFON, LEMONCHIFFON, SKYBLUE, SKYBLUE, SKYBLUE, SKYBLUE, SKYBLUE);
+      }
+    </style>
+</head>
+
+<body>
+
+  <div class="container">
+    <canvas id="interface-circle"></canvas>
+  </div>
+
+  <script>
+    var motion = document.getElementById("interface-circle");
+    motion.width = 800;
+    motion.height = 400;
+    // var socket = io();
+    var stage = new createjs.Stage("interface-circle");
+    var circle = new createjs.Shape();
+    circle.graphics.beginFill("GOLD").drawCircle(400, 160, 60);
+
+    stage.addChild(circle);
+
+
+    createjs.Tween.get(circle, {
+        loop: true
+      })
+      .to({
+        x: 30,
+
+      }, 1800, createjs.Ease.getPowInOut(1))
+      .to({
+        x: 0,
+
+      }, 1800, createjs.Ease.getPowInOut(1))
+      .to({
+
+        x: -30,
+      }, 1800, createjs.Ease.getPowInOut(1))
+      .to({
+        x: 0,
+
+      }, 1800, createjs.Ease.getPowInOut(1))
+
+    createjs.Ticker.setFPS(60);
+    createjs.Ticker.addEventListener("tick", stage);
+    stage.update();
+
+    // socket.on('interface+motion_listen', function(data) {
+    //   switch (data.command) {
+    //     case 'right':
+    //       bmp.x += 50;
+    //       break;
+    //     case 'left':
+    //       bmp.x -= 50;
+    //       break;
+    //   }
+    //   stage.update();
+    // });
+  </script>
+
+</body>
+
+</html>
