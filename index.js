@@ -25,6 +25,8 @@ app.get('/interface', function(req, res) {
   res.render(__dirname + '/views/pages/interface+motion/interface.ejs');
 });
 
+
+
 io.on('connection', function(socket) {
   console.log('New connect');
   socket.on('disconnect', function() {
