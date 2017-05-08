@@ -23,6 +23,14 @@ app.get('/interface', function(req, res) {
   res.render(__dirname + '/views/pages/interface+motion/interface.ejs');
 });
 
+app.get('/interface-circle', function(req, res) {
+  res.render(__dirname + '/views/pages/interface+motion/interface-circle.ejs');
+});
+
+app.get('/motion2', function(req, res) {
+  res.render(__dirname + '/views/pages/interface+motion/motion2.ejs');
+});
+
 var sprites = {};
 
 io.on('connection', function(socket) {
