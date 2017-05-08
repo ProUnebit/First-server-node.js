@@ -7,18 +7,19 @@
   <% include ../../partials/header.ejs %>
 
     <style>
-      * {
-        margin: 0;
-        padding: 0;
-      }
 
       body {
         margin-top: 50px;
       }
 
+      canvas {
+        display: block;
+        outline: 5px solid SILVER;
+        position: absolute;
+      }
+
       #interface-circle {
-        border: 5px solid SILVER;
-        background: linear-gradient(to top, LEMONCHIFFON, LEMONCHIFFON, SKYBLUE, SKYBLUE, SKYBLUE, SKYBLUE, SKYBLUE);
+        background: linear-gradient(to top, TOMATO, LEMONCHIFFON, SKYBLUE, SKYBLUE, SKYBLUE, LEMONCHIFFON, TOMATO);
       }
     </style>
 </head>
@@ -30,15 +31,35 @@
 
 
   <script>
-    var motion = document.getElementById("interface-circle");
-    motion.width = window.innerWidth;
-    motion.height = 400;
+    var interfaceCircle = document.getElementById("interface-circle");
+    interfaceCircle.width = document.documentElement.clientWidth;
+    interfaceCircle.height = 400;
     // var socket = io();
     var stage = new createjs.Stage("interface-circle");
     var circle = new createjs.Shape();
-    circle.graphics.beginFill("GOLD").drawCircle(400, 160, 60);
+    circle.graphics.beginFill("ORANGERED").drawCircle(800, 140, 60);
 
     stage.addChild(circle);
+
+    createjs.Tween.get(circle, {
+        loop: true
+      })
+      .to({
+        x: 400
+
+      }, 1800, createjs.Ease.getPowInOut(1))
+      .to({
+        x: 0
+
+      }, 1800, createjs.Ease.getPowInOut(1))
+      .to({
+
+        x: -400
+      }, 1800, createjs.Ease.getPowInOut(1))
+      .to({
+        x: 0
+
+      }, 1800, createjs.Ease.getPowInOut(1))
 
     addEventListener("mousemove", function(event) {
 
@@ -46,29 +67,11 @@
           loop: false
         })
         .to({
-          x: event.x - 40,
-          y: event.y - 40
+          y: event.y - 140
         }, ((circle.y - event.y) * (circle.x - event.x)) * 0.001, createjs.Ease.Linear)
-      createjs.Tween.get(circle, {
-          loop: true
-        })
-        .to({
-          x: 30,
 
-        }, 1800, createjs.Ease.getPowInOut(1))
-        .to({
-          x: 0,
-
-        }, 1800, createjs.Ease.getPowInOut(1))
-        .to({
-
-          x: -30,
-        }, 1800, createjs.Ease.getPowInOut(1))
-        .to({
-          x: 0,
-
-        }, 1800, createjs.Ease.getPowInOut(1))
     });
+
 
     createjs.Ticker.setFPS(60);
     createjs.Ticker.addEventListener("tick", stage);
