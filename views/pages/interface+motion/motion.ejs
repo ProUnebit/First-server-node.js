@@ -32,83 +32,77 @@
     var socket = io();
     var stage = new createjs.Stage("motion");
     var pic;
-  switch  (Math.floor(Math.random() * 10 )) {
+    switch (Math.floor(Math.random() * 10)) {
       case 0:
-      pic = "http://scratch.by/upload/iblock/b63/dog_120.png";
-      break;
+        pic = "http://scratch.by/upload/iblock/b63/dog_120.png";
+        break;
       case 1:
-      pic = "http://scratch.by/upload/iblock/232/sheep_120.png";
-      break;
+        pic = "http://scratch.by/upload/iblock/232/sheep_120.png";
+        break;
       case 2:
-      pic = "http://scratch.by/upload/iblock/c62/pig_120.png";
-      break;
+        pic = "http://scratch.by/upload/iblock/c62/pig_120.png";
+        break;
       case 3:
-      pic = "http://scratch.by/upload/iblock/a9f/horse_-120.png";
-      break;
+        pic = "http://scratch.by/upload/iblock/a9f/horse_-120.png";
+        break;
       case 4:
-      pic = "http://scratch.by/upload/iblock/712/goose_120.png";
-      break;
+        pic = "http://scratch.by/upload/iblock/712/goose_120.png";
+        break;
       case 5:
-      pic = "http://scratch.by/upload/iblock/31a/goat_120.png";
-      break;
+        pic = "http://scratch.by/upload/iblock/31a/goat_120.png";
+        break;
       case 6:
-      pic = "http://scratch.by/upload/iblock/85d/cow_120.png";
-      break;
+        pic = "http://scratch.by/upload/iblock/85d/cow_120.png";
+        break;
       case 7:
-      pic = "http://scratch.by/upload/iblock/73d/cock_120.png";
-      break;
+        pic = "http://scratch.by/upload/iblock/73d/cock_120.png";
+        break;
       case 8:
-      pic = "http://scratch.by/upload/iblock/5f2/bull_120.png";
-      break;
+        pic = "http://scratch.by/upload/iblock/5f2/bull_120.png";
+        break;
       case 9:
-      pic = "http://scratch.by/upload/iblock/933/goby_120.png"
- }
-
-    var bmp = new createjs.Bitmap(pic);
-    bmp.x = 350;
-    bmp.y = 280;
-    stage.addChild(bmp);
-
-    createjs.Tween.get(bmp, {
-        loop: true
-      })
-      .to({
-        y: 272,
-      }, 200, createjs.Ease.getPowInOut(0.5))
-      .to({
-        scaleX: 1.3,
-        scaleY: 1.3,
-        y: 180,
-      }, 120, createjs.Ease.getPowInOut(1))
-      .to({
-        rotation: 180
-      }, 150, createjs.Ease.getPowInOut(1))
-      .to({
-        rotation: 240
-      }, 80, createjs.Ease.getPowInOut(1))
-      .to({
-        rotation: 300
-      }, 80, createjs.Ease.getPowInOut(1))
-      .to({
-        y: 280,
-        scaleX: 0.8,
-        scaleY: 0.8,
-        rotation: 360
-      }, 100, createjs.Ease.getPowInOut(0.5))
-
-    createjs.Ticker.setFPS(60);
-    createjs.Ticker.addEventListener("tick", stage);
+        pic = "http://scratch.by/upload/iblock/933/goby_120.png"
+    }
 
     socket.on('interface+motion_listen', function(data) {
-      switch (data.command) {
-        case 'right':
-          bmp.x += 50;
-          break;
-        case 'left':
-          bmp.x -= 50;
-          break;
+      stage.removeAllChildren();
+      for (let key in data) {
+        var bmp = new createjs.Bitmap(pic);
+        bmp.x = data[key].x;
+        bmp.y = data[key].y;
+        stage.addChild(bmp);
+
+        createjs.Tween.get(bmp, {
+            loop: true
+          })
+          .to({
+            y: 272,
+          }, 200, createjs.Ease.getPowInOut(0.5))
+          .to({
+            scaleX: 1.3,
+            scaleY: 1.3,
+            y: 180,
+          }, 120, createjs.Ease.getPowInOut(1))
+          .to({
+            rotation: 180
+          }, 150, createjs.Ease.getPowInOut(1))
+          .to({
+            rotation: 240
+          }, 80, createjs.Ease.getPowInOut(1))
+          .to({
+            rotation: 300
+          }, 80, createjs.Ease.getPowInOut(1))
+          .to({
+            y: 280,
+            scaleX: 0.8,
+            scaleY: 0.8,
+            rotation: 360
+          }, 100, createjs.Ease.getPowInOut(0.5))
+
+        createjs.Ticker.setFPS(60);
+        createjs.Ticker.addEventListener("tick", stage);
       }
-      stage.update();
+         stage.update();
     });
   </script>
 
