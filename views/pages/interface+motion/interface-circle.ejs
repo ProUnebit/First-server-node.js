@@ -37,8 +37,8 @@
     // var socket = io();
     var stage = new createjs.Stage("interface-circle");
     var circle = new createjs.Shape();
-    circle.graphics.beginFill("ORANGERED").drawCircle(800, 140, 60);
-
+    var circleColor = '#'+(Math.random()*0xFFFFFF<<0).toString(16);
+    circle.graphics.beginFill(circleColor).drawCircle(800, 140, 60);
     stage.addChild(circle);
 
     createjs.Tween.get(circle, {
