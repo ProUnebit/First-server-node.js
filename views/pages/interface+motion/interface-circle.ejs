@@ -19,7 +19,7 @@
       }
 
       #interface-circle {
-        background: linear-gradient(to top, TOMATO, LEMONCHIFFON, SKYBLUE, SKYBLUE, SKYBLUE, LEMONCHIFFON, TOMATO);
+        background: linear-gradient(to bottom, ORANGERED, ORANGERED, TOMATO, CORAL, LIGHTSALMON, PALEGOLDENROD, SKYBLUE, SKYBLUE);
       }
     </style>
 </head>
@@ -68,7 +68,7 @@
         })
         .to({
           y: event.y - 140
-        }, ((circle.y - event.y) * (circle.x - event.x)) * 0.001, createjs.Ease.Linear)
+        }, ((circle.y - event.y) * (circle.x - event.x)) * 0.0000001, createjs.Ease.Linear)
 
     });
 
