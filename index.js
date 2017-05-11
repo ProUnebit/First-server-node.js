@@ -31,6 +31,10 @@ app.get('/motion2', function(req, res) {
   res.render(__dirname + '/views/pages/interface+motion/motion2.ejs');
 });
 
+app.get('/epilepsia-circle', function(req, res) {
+  res.render(__dirname + '/views/pages/interface+motion/epilepsia-circle.ejs');
+});
+
 var sprites = {};
 
 io.on('connection', function(socket) {

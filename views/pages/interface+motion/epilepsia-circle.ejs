@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+
+  <% include ../../partials/header.ejs %>
+
+    <style>
+
+      body {
+        margin-top: 50px;
+        background: LIGHTSALMON;
+      }
+
+      canvas {
+        display: block;
+        outline: 5px solid SILVER;
+        position: absolute;
+      }
+
+      #epilepsia-circle {
+        background: linear-gradient(to bottom, ORANGERED, ORANGERED, TOMATO, CORAL, LIGHTSALMON, PALEGOLDENROD, WHITESMOKE, SKYBLUE, SKYBLUE);
+      }
+    </style>
+</head>
+
+<body>
+
+
+  <canvas id="epilepsia-circle"></canvas>
+
+
+  <script>
+  var interfaceCircle = document.getElementById("epilepsia-circle");
+    interfaceCircle.width = document.documentElement.clientWidth;
+    interfaceCircle.height = 500;
+    var stage = new createjs.Stage("epilepsia-circle");
+
+function explode(conf){
+  var circle = new createjs.Shape();
+  var circleColor = '#'+(Math.random()*0xFFFFFF<<0).toString(16);
+  circle.graphics.beginFill(circleColor).drawCircle(0, 0, 40);
+  circle.x = conf.x;
+  circle.y = conf.y;
+  stage.addChild(circle);
+
+  createjs.Tween.get(circle, { loop: false })
+    .to({ alpha: 0, scaleX: 8, scaleY: 8}, 2000)
+
+    .call(function(){
+      stage.deleteChild(circle);
+    });
+}
+
+stage.isPressed = true;
+
+stage.on("stagemousedown",function(evt){
+  stage.isPressed = true;
+});
+stage.on("stagemouseup",function(evt){
+  stage.isPressed = false;
+});
+stage.on("stagemousemove",function(evt){
+  stage.mouseCoords = {'x':evt.stageX,'y':evt.stageY};
+});
+
+function moveHandler(evt){
+  if (stage.isPressed){
+    explode({'x':stage.mouseCoords.x,'y':stage.mouseCoords.y});
+  }
+}
+
+createjs.Ticker.setFPS(60);
+createjs.Ticker.addEventListener("tick", stage);
+createjs.Ticker.addEventListener("tick", moveHandler);
+
+  </script>
+
+</body>
+
+</html>
