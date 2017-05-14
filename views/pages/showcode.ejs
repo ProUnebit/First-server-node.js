@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+
+  <% include ../partials/header.ejs %>
+
+    <style>
+      button {
+        margin-bottom: 25px;
+        cursor: pointer;
+      }
+      button:active {
+        transform: scale(1.05);
+      }
+      .btn {
+        font-size: 25px;
+      }
+      p {
+        font-size: 20px;
+      }
+    </style>
+</head>
+
+<body>
+
+  <div class="container">
+    <div class="row">
+        	<button class="btn btn-success col-md-12" onclick="show();">Показать код</button>
+    </div>
+    <div class="row">
+      <p class="col-md-12"></p>
+    </div>
+  </div>
+
+  <script>
+  function show() {
+  var el = document.getElementsByTagName('p')[0];
+      el.innerHTML = show;
+    };
+  </script>
+
+</body>
+
+</html>

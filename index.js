@@ -15,6 +15,10 @@ app.get('/chatroom', function(req, res) {
   res.render(__dirname + '/views/pages/chatroom.ejs');
 });
 
+app.get('/showcode', function(req, res) {
+  res.render(__dirname + '/views/pages/showcode.ejs');
+});
+
 app.get('/motion', function(req, res) {
   res.render(__dirname + '/views/pages/interface+motion/motion.ejs');
 });

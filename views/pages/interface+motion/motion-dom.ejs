@@ -110,7 +110,7 @@
     circleDOM.style.backgroundRepeat = "no-repeat";
     circleDOM.style.backgroundPosition = "center";
 
-    function changeEl(newMotion, newColor, newPic, newBorder, newWidth, newHeight) {
+    const changeEl = (newMotion, newColor, newPic, newBorder, newWidth, newHeight) => {
       circleDOM.style.WebkitAnimation = newMotion;
       circleDOM.style.backgroundColor = newColor;
       circleDOM.style.backgroundImage = newPic;
